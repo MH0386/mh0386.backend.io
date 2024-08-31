@@ -1,6 +1,4 @@
 {
-  "buildCommand": "pip install pip-tools && pip-compile --output-file=requirements.txt pyproject.toml",
-  "installCommand": "pip install -r requirements.txt",
   "rewrites": [
     {
       "destination": "/api/index",
