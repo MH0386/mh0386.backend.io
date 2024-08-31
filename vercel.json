@@ -1,4 +1,5 @@
 {
+  "installCommand": "pip install uv && uv pip install -r pyproject.toml",
   "rewrites": [
     {
       "destination": "/api/index",
