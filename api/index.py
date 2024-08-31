@@ -1,7 +1,13 @@
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
-@app.get("/api/python")
-def hello_world():
-    return {"message": "Hello World"}
+
+@app.get("/")
+def home():
+    return JSONResponse(
+        content={
+            "message": "Hello, World!",
+        },
+    )
