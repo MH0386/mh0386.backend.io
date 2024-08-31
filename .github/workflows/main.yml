@@ -1,0 +1,24 @@
+name: UV
+on: [push]
+jobs:
+  uv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Cache
+        uses: actions/cache@v4.0.1
+        with:
+            path: ~/.cache/pip
+            key: ${{ runner.os }}-pip-${{ hashFiles('**/.gitignore') }}
+            restore-keys: |
+                ${{ runner.os }}-pip-
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: "pyproject.toml"
+      - name: Minimize uv cache
+        run: uv cache prune --ci
+      - name: Export pyproject.toml to requirements.txt
+        run: |
+          pip install -U uv
+          uv export > requirements.txt
