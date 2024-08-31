@@ -27,7 +27,7 @@ jobs:
             git config user.name MH0386          
             git config user.email mohamed.hisham.abdelzaher@gmail.com         
             git add .         
-            git commit -m "add PDF file" 
+            git commit -m "Update requirements file" 
             git pull          
             git push
         continue-on-error: true
