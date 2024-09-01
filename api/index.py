@@ -6,4 +6,7 @@ app = FastAPI()
 
 @app.get(path="/")
 def home() -> HTMLResponse:
-    return HTMLResponse(content="<h1>Welcome to the API</h1>", status_code=200,)
+    return HTMLResponse(
+        content="<h1>Welcome to the Backend of <a href='https://MH0386.github.io'>MH0386.github.io</a></h1>",
+        status_code=200,
+    )
