@@ -1,13 +1,9 @@
 from fastapi import FastAPI
-from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
 
-@app.get("/")
-def home():
-    return JSONResponse(
-        content={
-            "message": "Hello, World!",
-        },
-    )
+@app.get(path="/")
+def home() -> HTMLResponse:
+    return HTMLResponse(content="<h1>Welcome to the API</h1>", status_code=200,)
