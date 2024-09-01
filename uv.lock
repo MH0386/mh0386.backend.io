@@ -85,13 +85,33 @@ name = "mh0386-backend-io"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "annotated-types" },
+    { name = "anyio" },
+    { name = "click" },
     { name = "fastapi" },
+    { name = "h11" },
+    { name = "idna" },
+    { name = "pydantic" },
+    { name = "pydantic-core" },
+    { name = "sniffio" },
+    { name = "starlette" },
+    { name = "typing-extensions" },
     { name = "uvicorn" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "annotated-types", specifier = ">=0.7.0" },
+    { name = "anyio", specifier = ">=4.4.0" },
+    { name = "click", specifier = ">=8.1.7" },
     { name = "fastapi", specifier = ">=0.112.2" },
+    { name = "h11", specifier = ">=0.14.0" },
+    { name = "idna", specifier = ">=3.8" },
+    { name = "pydantic", specifier = ">=2.8.2" },
+    { name = "pydantic-core", specifier = ">=2.20.1" },
+    { name = "sniffio", specifier = ">=1.3.1" },
+    { name = "starlette", specifier = ">=0.38.2" },
+    { name = "typing-extensions", specifier = ">=4.12.2" },
     { name = "uvicorn", specifier = ">=0.30.6" },
 ]
 
@@ -155,14 +175,14 @@ wheels = [
 
 [[package]]
 name = "starlette"
-version = "0.38.2"
+version = "0.38.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/43/e2/d49a94ecb665b3a1c34b40c78165a737abc384fcabc843ccb14a3bd3dc37/starlette-0.38.2.tar.gz", hash = "sha256:c7c0441065252160993a1a37cf2a73bb64d271b17303e0b0c1eb7191cfb12d75", size = 2844770 }
+sdist = { url = "https://files.pythonhosted.org/packages/7f/27/ea66b32f01d9f07bbb8cc545ae670fe1d4dce91c951132d0d968ed49d60a/starlette-0.38.3.tar.gz", hash = "sha256:f674450f0f46a790be1f3a128f386080600b58fa358f8e320d93dbef6d7f676c", size = 2845452 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c1/60/d976da9998e4f4a99e297cda09d61ce305919ea94cbeeb476dba4fece098/starlette-0.38.2-py3-none-any.whl", hash = "sha256:4ec6a59df6bbafdab5f567754481657f7ed90dc9d69b0c9ff017907dd54faeff", size = 72020 },
+    { url = "https://files.pythonhosted.org/packages/bc/c9/add3daf4ac49d1406db0901f47b5b743a1caa740d05c861790b6814f05c4/starlette-0.38.3-py3-none-any.whl", hash = "sha256:0e4af343a4e59324b96fbe0f3c6ad8c3a908d73f12f5c80a797803a6c3ad4687", size = 72130 },
 ]
 
 [[package]]
