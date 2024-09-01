@@ -3,8 +3,9 @@ name = "mh0386.backend.io"
 version = "0.1.0"
 description = "Backend Part of my website"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 dependencies = [
     "fastapi[standard]>=0.112.2",
+    "requests>=2.32.3",
     "uvicorn>=0.30.6",
 ]
