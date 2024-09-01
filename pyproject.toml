@@ -1,7 +1,7 @@
 [project]
-name = "mh0386-backend-io"
+name = "mh0386.backend.io"
 version = "0.1.0"
-description = "Add your description here"
+description = "Backend Part of my website"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
