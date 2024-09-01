@@ -4,8 +4,6 @@ from fastapi.responses import HTMLResponse
 import requests
 
 app = FastAPI()
-# TOKEN = "7148305891:AAFvN7nJ_QIW_OA6OaJYa-v1C0efTz6kL_0"
-# CHAT_ID = "-4514991347"
 TOKEN: str | None = os.getenv(key="TOKEN")
 CHAT_ID: str | None = os.getenv(key="CHAT_ID")
 
