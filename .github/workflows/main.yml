@@ -26,6 +26,7 @@ jobs:
         run: uv export > requirements.txt
       - name: Commit and Push new file
         run: |
+          git fetch origin vercel
           git switch vercel
           git add requirements.txt
           git commit -m "Update requirements file"
