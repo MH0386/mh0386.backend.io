@@ -28,7 +28,8 @@ jobs:
         run: |
           git config user.name MH0386
           git config user.email mohamed.hisham.abdelzaher@gmail.com
-          git add .
+          git checkout vercel
+          git add requirements.txt
           git commit -m "Update requirements file"
           git pull
           git push
