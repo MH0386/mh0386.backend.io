@@ -8,10 +8,10 @@ jobs:
       - name: Set up Cache
         uses: actions/cache@v4.0.2
         with:
-            path: ~/.cache/pip
-            key: ${{ runner.os }}-pip-${{ hashFiles('**/.gitignore') }}
-            restore-keys: |
-                ${{ runner.os }}-pip-
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/uv.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -20,14 +20,16 @@ jobs:
         run: |
           pip install -U uv
           uv cache prune --ci
+      - name: Sync project dependencies
+        run: uv sync
       - name: Export pyproject.toml to requirements.txt
         run: uv export > requirements.txt
       - name: Commit and Push new file
         run: |
-            git config user.name MH0386          
-            git config user.email mohamed.hisham.abdelzaher@gmail.com         
-            git add .         
-            git commit -m "Update requirements file" 
-            git pull          
-            git push
+          git config user.name MH0386
+          git config user.email mohamed.hisham.abdelzaher@gmail.com
+          git add .
+          git commit -m "Update requirements file"
+          git pull
+          git push
         continue-on-error: true
