@@ -26,6 +26,8 @@ jobs:
         run: uv export > requirements.txt
       - name: Commit and Push new file
         run: |
+          git config --global user.email "mohamed.hisham.abdelzaher@gmail.com"
+          git config --global user.name "Mohamed Hisham Abdelzaher"
           git fetch origin vercel
           git add requirements.txt
           git commit -m "Update requirements file"
