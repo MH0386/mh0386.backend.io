@@ -27,7 +27,7 @@ jobs:
       - name: Commit and Push new file
         run: |
           git fetch origin vercel
-          git switch vercel
+          git checkout vercel
           git add requirements.txt
           git commit -m "Update requirements file"
           git pull
