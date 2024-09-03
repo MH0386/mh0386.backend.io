@@ -1,11 +1,15 @@
 import os
+
+import mailersend
+import requests
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-import requests
 
+mailer = mailersend.NewApiClient()
 app = FastAPI()
-TOKEN: str | None = os.getenv(key="TOKEN")
-CHAT_ID: str | None = os.getenv(key="CHAT_ID")
+TOKEN: str = os.getenv(key="TOKEN")
+CHAT_ID: str = os.getenv(key="CHAT_ID")
+
 
 @app.get(path="/")
 def home() -> HTMLResponse:
@@ -14,13 +18,23 @@ def home() -> HTMLResponse:
         status_code=200,
     )
 
+
 @app.get(path="/send")
 def send_message(text: str):
-    response: requests.Response = requests.post(
+    response_telegram: requests.Response = requests.post(
         url=f"https://api.telegram.org/bot{TOKEN}/sendMessage",
         data={
             "chat_id": CHAT_ID,
             "text": text,
         },
     )
-    return response.json()
+
+    subject = "New request from MH0386.github.io"
+    text = "There is a new request from your website."
+    html = "There is a new request from your website."
+
+    my_mail = "info@domain.com"
+    subscriber_list = ["mohamed.hisham.abdelzaher@gmail.com"]
+
+    mailer.send(my_mail, subscriber_list, subject, html, text)
+    return response_telegram.json()
