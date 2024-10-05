@@ -1,7 +1,7 @@
 import os
 import requests
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse
 
 app = FastAPI()
 
@@ -23,3 +23,14 @@ def send_message(text: str):
         },
     )
     return response_telegram.json()
+
+@app.get(path="/get_resume")
+def get_resume() -> FileResponse:
+    return FileResponse(
+        path="docs/resume.pdf",
+        media_type="application/pdf",
+        filename="mohamed_hisham_abdelzaher_resume.pdf",
+        headers={
+            "Content-Disposition": "inline; filename=mohamed_hisham_abdelzaher_resume.pdf"
+        },
+    )
