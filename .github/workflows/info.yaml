@@ -1,0 +1,17 @@
+name: info
+on:
+    schedule:
+        - cron: "0 0 * * *"
+
+jobs:
+    info:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Install dependencies
+              uses: upciti/wakemeops-action@v1
+              with:
+                  packages: jq
+            - name: Update info.json
+              run: |
+                  echo "{\n    \"views\": \"$(date)\"\n}" > info.json
