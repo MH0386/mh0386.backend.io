@@ -1,9 +1,11 @@
 import os
+
 import requests
 from fastapi import FastAPI
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
 
 app = FastAPI()
+
 
 @app.get(path="/")
 def home() -> HTMLResponse:
@@ -24,6 +26,7 @@ def send_message(text: str):
     )
     return response_telegram.json()
 
+
 @app.get(path="/get_resume")
 def get_resume() -> FileResponse:
     return FileResponse(
@@ -32,5 +35,17 @@ def get_resume() -> FileResponse:
         filename="mohamed_hisham_abdelzaher_resume.pdf",
         headers={
             "Content-Disposition": "inline; filename=mohamed_hisham_abdelzaher_resume.pdf"
+        },
+    )
+
+
+@app.get(path="/get_nasa_space_apps_challenge")
+def get_nasa_space_apps_challenge() -> FileResponse:
+    return FileResponse(
+        path="docs/nasa_space_apps_challenge.pdf",
+        media_type="application/pdf",
+        filename="nasa_space_apps_challenge.pdf",
+        headers={
+            "Content-Disposition": "inline; filename=nasa_space_apps_challenge.pdf"
         },
     )
