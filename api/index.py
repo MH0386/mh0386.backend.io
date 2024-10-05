@@ -4,14 +4,19 @@ from git import Repo
 import requests
 from fastapi import FastAPI
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
+import subprocess
 
 app = FastAPI()
 data = "data/info.json"
 repo = Repo(path=".")
-os.system( "which git")
+
 
 @app.get(path="/")
 def home() -> HTMLResponse:
+    os.environ["GIT_PYTHON_GIT_EXECUTABLE"] = subprocess.run(
+        args=["which", "git"], capture_output=True, text=True
+    ).stdout.strip()
+    print(os.environ["GIT_PYTHON_GIT_EXECUTABLE"])
     views_count: int = json.loads(s=open(file=data, mode="r").read())["views"]
     with open(file=data, mode="w") as file:
         file.write(json.dumps(obj={"views": views_count + 1}, indent=4))
