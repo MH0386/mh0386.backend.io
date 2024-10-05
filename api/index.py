@@ -10,20 +10,15 @@ data = "data/info.json"
 
 @app.get(path="/")
 def home() -> HTMLResponse:
-    views_count: int = json.loads(s=open(file=data, mode="r").read())["views"]
-    with open(file=data, mode="w") as file:
-        file.write(json.dumps(obj={"views": views_count + 1}, indent=4))
-    try:
-        subprocess.run(args=["git", "add", "."])
-        subprocess.run(args=["git", "commit", "-m", "'update'"])
-        subprocess.run(args=["git", "pull"])
-        subprocess.run(args=["git", "push"])
-    except Exception as e:
-        print(e)
     return HTMLResponse(
         content=open(file="api/home.html", mode="r").read(),
     )
 
+@app.get(path="/get_info")
+def get_info() -> JSONResponse:
+    return JSONResponse(
+        content=json.loads(s=open(file=data, mode="r").read()),
+    )
 
 @app.get(path="/send")
 def send_message(text: str) -> JSONResponse:
