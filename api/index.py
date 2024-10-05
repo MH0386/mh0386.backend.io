@@ -1,11 +1,15 @@
 import json
 import os
+
 import requests
 from fastapi import FastAPI
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 
 app = FastAPI()
 data = "data/info.json"
+global views
+views: int = json.loads(s=open(file=data, mode="r").read())["views"]
+
 
 @app.get(path="/")
 def home() -> HTMLResponse:
@@ -13,14 +17,17 @@ def home() -> HTMLResponse:
         content=open(file="api/home.html", mode="r").read(),
     )
 
-@app.get(path="/get_info")
-def get_info() -> JSONResponse:
+
+@app.get(path="/get_views")
+def get_views() -> JSONResponse:
     return JSONResponse(
-        content=json.loads(s=open(file=data, mode="r").read()),
+        content={"views": views},
     )
+
 
 @app.get(path="/send")
 def send_message(text: str) -> JSONResponse:
+    views += 1
     response_telegram: requests.Response = requests.post(
         url=f"https://api.telegram.org/bot{os.getenv(key='TOKEN')}/sendMessage",
         data={
@@ -54,11 +61,4 @@ def get_nasa_space_apps_challenge() -> FileResponse:
         headers={
             "Content-Disposition": "inline; filename=nasa_space_apps_challenge.pdf"
         },
-    )
-
-
-@app.get(path="/get_views_count")
-def get_views_count() -> JSONResponse:
-    return JSONResponse(
-        content=json.loads(s=open(file=data, mode="r").read()),
     )

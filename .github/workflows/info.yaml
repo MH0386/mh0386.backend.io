@@ -16,7 +16,7 @@ jobs:
                   packages: jq
             - name: Update info.json
               run: |
-                  value=$(curl -s "https://mh0386backend.vercel.app/get_info" | jq -r '.views')
+                  value=$(curl -s "https://mh0386backend.vercel.app/get_views" | jq -r '.views')
                   echo "{\"views\": $value}" | jq --indent 4 '.' > data/info.json
             - name: Commit and push
               continue-on-error: true
