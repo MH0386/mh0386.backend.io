@@ -9,6 +9,7 @@ app = FastAPI()
 data = "data/info.json"
 repo = Repo(path=".")
 
+
 @app.get(path="/")
 def home() -> HTMLResponse:
     views_count: int = json.loads(s=open(file=data, mode="r").read())["views"]
@@ -64,4 +65,6 @@ def get_nasa_space_apps_challenge() -> FileResponse:
 
 @app.get(path="/get_views_count")
 def get_views_count() -> JSONResponse:
-    return JSONResponse(content=json.loads(s=open(file=data, mode="r").read()))
+    return JSONResponse(
+        content=json.loads(s=open(file=data, mode="r").read()),
+    )
