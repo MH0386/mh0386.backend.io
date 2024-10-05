@@ -26,7 +26,7 @@ def get_views() -> JSONResponse:
 
 @app.get(path="/send")
 def send_message(text: str) -> JSONResponse:
-    views += 1
+    #views += 1
     response_telegram: requests.Response = requests.post(
         url=f"https://api.telegram.org/bot{os.getenv(key='TOKEN')}/sendMessage",
         data={
