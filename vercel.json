@@ -1,5 +1,4 @@
 {
-  "buildCommand": "which git",
   "rewrites": [
     {
       "destination": "/api/index",
