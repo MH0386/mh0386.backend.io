@@ -2,7 +2,7 @@ import os
 
 import requests
 from fastapi import FastAPI
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 
 app = FastAPI()
 
@@ -15,7 +15,7 @@ def home() -> HTMLResponse:
 
 
 @app.get(path="/send")
-def send_message(text: str):
+def send_message(text: str) -> JSONResponse:
     response_telegram: requests.Response = requests.post(
         url=f"https://api.telegram.org/bot{os.getenv(key='TOKEN')}/sendMessage",
         data={
@@ -23,7 +23,9 @@ def send_message(text: str):
             "text": text,
         },
     )
-    return response_telegram.json()
+    return JSONResponse(
+        content=response_telegram.json(),
+    )
 
 
 @app.get(path="/get_resume")
