@@ -1,29 +1,25 @@
 import json
 import os
-from git import Repo
 import requests
 from fastapi import FastAPI
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
+import subprocess
 
 app = FastAPI()
 data = "data/info.json"
-repo = Repo(path=".")
-repo.git.refresh(path="/usr/bin/git")
-
-os.environ["PATH"] = "/usr/bin/git" + os.pathsep + os.environ["PATH"]
-os.environ["GIT_PYTHON_REFRESH"] = "quiet"
-os.environ["GIT_PYTHON_GIT_EXECUTABLE"] = "/usr/bin/git"
 
 @app.get(path="/")
 def home() -> HTMLResponse:
     views_count: int = json.loads(s=open(file=data, mode="r").read())["views"]
     with open(file=data, mode="w") as file:
         file.write(json.dumps(obj={"views": views_count + 1}, indent=4))
-    if repo.is_dirty():
-        repo.git.add(data)
-        repo.git.commit(message="update views count")
-        repo.git.pull()
-        repo.git.push()
+    try:
+        subprocess.run(args=["git", "add", "."])
+        subprocess.run(args=["git", "commit", "-m", "'update'"])
+        subprocess.run(args=["git", "pull"])
+        subprocess.run(args=["git", "push"])
+    except Exception as e:
+        print(e)
     return HTMLResponse(
         content=open(file="api/home.html", mode="r").read(),
     )
