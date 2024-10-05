@@ -8,7 +8,7 @@ from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 app = FastAPI()
 data = "data/info.json"
 repo = Repo(path=".")
-
+os.system( "which git")
 
 @app.get(path="/")
 def home() -> HTMLResponse:
