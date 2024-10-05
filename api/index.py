@@ -19,13 +19,15 @@ def home() -> HTMLResponse:
     print(os.environ["GIT_PYTHON_GIT_EXECUTABLE"])
     os.environ["GIT_PYTHON_REFRESH"] = "quiet"
     views_count: int = json.loads(s=open(file=data, mode="r").read())["views"]
+    print(os.getenv("GIT_PYTHON_REFRESH"))
+    print(os.getenv("GIT_PYTHON_GIT_EXECUTABLE"))
     with open(file=data, mode="w") as file:
         file.write(json.dumps(obj={"views": views_count + 1}, indent=4))
-    if repo.is_dirty():
-        repo.git.add(data)
-        repo.git.commit(message="update views count")
-        repo.git.pull()
-        repo.git.push()
+    # if repo.is_dirty():
+    #     repo.git.add(data)
+    #     repo.git.commit(message="update views count")
+    #     repo.git.pull()
+    #     repo.git.push()
     return HTMLResponse(
         content=open(file="api/home.html", mode="r").read(),
     )
