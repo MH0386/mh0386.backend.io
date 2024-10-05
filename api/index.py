@@ -17,6 +17,7 @@ def home() -> HTMLResponse:
         args=["which", "git"], capture_output=True, text=True
     ).stdout.strip()
     print(os.environ["GIT_PYTHON_GIT_EXECUTABLE"])
+    os.environ["GIT_PYTHON_REFRESH"] = "quiet"
     views_count: int = json.loads(s=open(file=data, mode="r").read())["views"]
     with open(file=data, mode="w") as file:
         file.write(json.dumps(obj={"views": views_count + 1}, indent=4))
