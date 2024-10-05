@@ -7,7 +7,6 @@ from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 
 app = FastAPI()
 data = "data/info.json"
-global views
 views: int = json.loads(s=open(file=data, mode="r").read())["views"]
 
 
