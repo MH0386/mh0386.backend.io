@@ -4,5 +4,6 @@
       "destination": "/api/index",
       "source": "/(.*)"
     }
-  ]
+  ],
+  "devCommand": "which git"
 }
