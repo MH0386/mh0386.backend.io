@@ -8,7 +8,7 @@ from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 app = FastAPI()
 data = "data/info.json"
 repo = Repo(path=".")
-repo.git.refresh(path=os.getenv(key="GIT_PYTHON_GIT_EXECUTABLE"))
+repo.git.refresh(path="/usr/bin/git")
 
 
 @app.get(path="/")
