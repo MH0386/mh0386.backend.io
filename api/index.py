@@ -10,6 +10,9 @@ data = "data/info.json"
 repo = Repo(path=".")
 repo.git.refresh(path="/usr/bin/git")
 
+os.environ["PATH"] = "/usr/bin/git" + os.pathsep + os.environ["PATH"]
+os.environ["GIT_PYTHON_REFRESH"] = "quiet"
+os.environ["GIT_PYTHON_GIT_EXECUTABLE"] = "/usr/bin/git"
 
 @app.get(path="/")
 def home() -> HTMLResponse:
