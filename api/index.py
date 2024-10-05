@@ -3,7 +3,6 @@ import os
 import requests
 from fastapi import FastAPI
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
-import subprocess
 
 app = FastAPI()
 data = "data/info.json"

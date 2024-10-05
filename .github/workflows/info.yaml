@@ -14,4 +14,14 @@ jobs:
                   packages: jq
             - name: Update info.json
               run: |
-                  echo "{\n    \"views\": \"$(date)\"\n}" > info.json
+                  value=$(curl -s "https://mh0386backend.vercel.app/get_info" | jq -r '.views')
+                  echo "{\"views\": $value}" | jq --indent 4 '.' > data/info.json
+            - name: Commit and push
+              continue-on-error: true
+              run: |
+                git config --global user.email "action@github.com"
+                git config --global user.name "GitHub Action"
+                git add data/info.json
+                git commit -m "Update info.json"
+                git pull
+                git push
