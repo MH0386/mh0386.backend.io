@@ -10,7 +10,7 @@ app = FastAPI()
 @app.get(path="/")
 def home() -> HTMLResponse:
     return HTMLResponse(
-        content=open(file="api/index.html", mode="r").read(),
+        content=open(file="api/home.html", mode="r").read(),
     )
 
 
