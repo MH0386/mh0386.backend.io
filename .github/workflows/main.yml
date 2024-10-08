@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Set up Cache
-        uses: actions/cache@v4.1.0
+        uses: actions/cache@v4.1.1
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/uv.lock') }}
